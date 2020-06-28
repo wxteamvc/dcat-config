@@ -22,7 +22,6 @@ class CreateConfigsTable extends Migration
             $table->text('value')->nullable();
             $table->text('options');
             $table->string('tips')->nullable();
-            $table->text('rules')->nullable();
             $table->timestamps();
         });
     }

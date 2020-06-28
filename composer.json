@@ -7,10 +7,10 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "fengwuyan",
+            "name": "wxteamvc",
             "email": "wxteamvc@163.com"
         }
-    ]
+    ],
     "require": {
         "php": ">=7.1.0",
         "dcat/laravel-admin": "*"

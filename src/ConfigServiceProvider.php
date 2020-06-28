@@ -35,8 +35,7 @@ class ConfigServiceProvider extends ServiceProvider
 
         // 注入自定义配置信息
         $config = Configs::getAllConfigs();
-        dump(config());
-        dd($config);
+        config(['setting'=> $config]);
     }
 
 
@@ -63,7 +62,7 @@ class ConfigServiceProvider extends ServiceProvider
             ],
             [
                 'id' => 3,
-                'title'         => '添加配置项',
+                'title'         => '编辑配置项',
                 'icon'          => 'feather icon-plus',
                 'uri'           => 'addConfigs',
                 'parent_id'     => 1,
@@ -72,7 +71,7 @@ class ConfigServiceProvider extends ServiceProvider
             ],
             [
                 'id' => 4,
-                'title'         => '添加分组项',
+                'title'         => '编辑分组项',
                 'icon'          => 'feather icon-plus',
                 'uri'           => 'addGroups',
                 'parent_id'     => 1,

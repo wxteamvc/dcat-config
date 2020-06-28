@@ -38,15 +38,12 @@ class Configs extends Model
     // 获取所有配置文件
     public static function getAllConfigs() : array
     {
-        $all = self::select('groups','key','value')->get();
-        $grouped = $all->mapToGroups(function($item, $key){
-            return [
-                $item['groups'] => [
-                    $item['key'] => $item['value']
-                ]
-            ];
-        });
-        return $grouped->toArray();
+        $configs = self::all();
+        $config_arr = [];
+        foreach ($configs->toArray() as $config){
+            $config_arr[$config['groups']][$config['key']] = $config['value'];
+        }
+        return $config_arr;
     }
 
     // 根据分组获取配置参数

@@ -30,7 +30,6 @@ class Config extends Extension
 
         if (Schema::hasTable('configs') || Schema::hasTable('config_groups')){
             $command->error('数据库存在configs或者config_groups表，请删除数据表后重试');
-            exit();
         }
 
         Artisan::call('migrate');

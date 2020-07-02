@@ -1,5 +1,5 @@
 {
-    "name": "dcat-admin-extensions/config",
+    "name": "fengwuyan/dcat-admin-config",
     "description": "description...",
     "type": "library",
     "keywords": ["dcat-admin", "extension"],

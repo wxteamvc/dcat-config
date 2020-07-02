@@ -1,6 +1,6 @@
 {
     "name": "fengwuyan/dcat-admin-config",
-    "description": "description...",
+    "description": "config for dcat-admin",
     "type": "library",
     "keywords": ["dcat-admin", "extension"],
     "homepage": "https://github.com/dcat-admin-extensions/config",

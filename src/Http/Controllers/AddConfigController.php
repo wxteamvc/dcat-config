@@ -14,15 +14,6 @@ class AddConfigController extends Controller
 {
     protected $name = "添加配置项";
 
-    protected $can_rules = [
-        'required' => '必填',
-        'number' => '数字',
-        'mobile' => '手机',
-        'email' => '邮件',
-        'url' => '链接',
-
-    ];
-
     protected $can_widgets = [
         'text' => '文本',
         'select' => '下拉单选',
@@ -89,6 +80,10 @@ class AddConfigController extends Controller
         return $content->body($this->form());
     }
 
+    public function edit($id, Content $content){
+        return $content ->title('编辑')->body($this->form()->edit($id));
+    }
+
     public function store()
     {
         return $this->form()->store();
@@ -106,18 +101,24 @@ class AddConfigController extends Controller
             $form->select('groups', '所属分组')->options($groups)->rules('required');
             $form->select('widget', '类型')->options($this->can_widgets)->rules('required');
 
-            $form->tags('options', '设置选项')->help('前部填写键名，使用"|"隔开，尾部填写键值，例如：全部|all');
+            $form->tags('options', '设置选项')
+                ->help('前部填写键名，使用"|"隔开，尾部填写键值，例如：全部|all');
             $form->text('title', '变量标题')->help('例如：系统名称')->rules('required');
             $form->text('key', '变量名')->help('例如：web_name')->rules('required');
             $form->text('tips', '提示信息');
 
+//            if($form->model()->widget == 'select' || $form->model()->widget == 'radio' ){
+//                $options_status = "options.show();";
+//            }else{
+                $options_status = "options.hide();";
+//            }
 
             Admin::script(
                 <<<JS
 (function(){
     var options = $('input[name="options[]"]').parents('.form-group');
     
-    options.hide();
+    {$options_status}
     
     $('select[name="widget"]').on('change', function(){
         switch ($(this).val()) {

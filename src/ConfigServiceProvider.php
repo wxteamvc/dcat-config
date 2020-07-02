@@ -4,6 +4,8 @@ namespace Dcat\Admin\Extension\Config;
 
 use Dcat\Admin\Admin;
 use Dcat\Admin\Extension\Config\Http\Models\Configs;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider
@@ -33,9 +35,14 @@ class ConfigServiceProvider extends ServiceProvider
 
         $this->registerMenus();
 
-        // 注入自定义配置信息
-        $config = Configs::getAllConfigs();
-        config(['setting'=> $config]);
+        try {
+            // 注入自定义配置信息
+            $config = Configs::getAllConfigs();
+            config(['setting'=> $config]);
+        }catch (QueryException $e){
+            Log::error($e->getMessage());
+        }
+
     }
 
 

@@ -30,6 +30,7 @@ class Configs extends Model
         $options = [];
         foreach ($arr as $item){
             $a = explode('|', $item);
+            if (!isset($a[0]) || !isset($a[1])) continue;
             $options[$a[1]] = $a[0];
         }
         return $options;
